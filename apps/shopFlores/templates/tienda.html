@@ -1,0 +1,66 @@
+{% extends "./base" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<title>FloreriaPG</title>
+{% endblock %}
+
+{% block body %}
+<body class="bg-body-secondary">
+    <div class="carrito">
+      <div class="header-carrito">
+        <h2>Tu carrito</h2>
+      </div>
+      <div class="carrito-items">
+      </div>
+      <div class="carrito-total">
+        <div class="fila">
+          <strong>Tu total</strong>
+          <span class="carrito-precio-total"></span>
+        </div>
+        <button class="btn-pagar btn btn-secondary">Pagar <i class="fa-solid fa-bag-shopping"></i></button>
+      </div>
+    </div>
+    <div class="container text-center">
+      {% for f in cat_flores %}
+        {% if f.stock > 0 %}
+        <div class="row row-cols-3">
+          <div class="col" id="item">
+            <span class="title-item">{{f.nombre}}</span>
+            <br>
+            <img src="{{f.imagen.url}}" alt="" class="img-item"> 
+            <br>
+            <span class="precio-item">{{f.precio}}</span>
+            <br>
+            <button class="btn btn-success agregar">Agregar al carrito</button>
+          </div>
+          {% endif %}
+      {% endfor %}
+          
+      {% for f in cat_ramos %}
+        {% if f.stock > 0 %}
+        <div class="row row-cols-3">
+          <div class="col" id="item">
+            <span class="title-item">{{f.nombre}}</span>
+            <br>
+            <img src="{{f.imagen.url}}" alt="" class="img-item"> 
+            <br>
+            <span class="precio-item">{{f.precio}}</span>
+            <br>
+            <button class="btn btn-success agregar">Agregar al carrito</button>
+          </div>
+          {% endif %}
+      {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/mode.js' %}"></script>
+<script src="{% static 'js/carrito.js' %}"></script>
+{% endblock %}
+</body>
+</html>
